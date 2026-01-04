@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ডার্ক গ্রে-ব্ল্যাক মিক্সড ব্যাকগ্রাউন্ড (পিওর ব্ল্যাক নয়) */
+  --bg-color: #0f172a; 
+  --text-color: #e2e8f0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ব্যাকগ্রাউন্ড ইমেজ লেয়ার */
+/* index.css এ নিচের মতো করে ইমেজটি সেট করুন */
