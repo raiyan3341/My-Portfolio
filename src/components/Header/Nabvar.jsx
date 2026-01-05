@@ -80,7 +80,7 @@ const Navbar = () => {
                         
                         {/* Download Resume Button */}
                         <motion.a
-                            href="/your-resume.pdf" // আপনার রেজুমে ফাইলের পাথ এখানে দিন
+                            href="/your-resume.pdf"
                             download
                             whileHover={{ scale: 1.05, boxShadow: "0px 0px 25px rgba(37, 99, 235, 0.5)" }}
                             whileTap={{ scale: 0.95 }}

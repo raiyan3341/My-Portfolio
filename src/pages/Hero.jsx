@@ -4,7 +4,6 @@ import { Github, Linkedin, Twitter, Facebook, Download, Sparkles } from 'lucide-
 import myProfileImage from '../assets/Gemini_Generated_Image_jaueo7jaueo7jaue.png';
 
 const Hero = () => {
-    // আপনার SocialLinks.jsx ফাইল থেকে ডাটাগুলো এখানে ইন্টিগ্রেট করা হয়েছে
     const socialLinks = [
         { Icon: Github, color: 'hover:bg-slate-700', url: 'https://github.com/raiyan3341' },
         { Icon: Linkedin, color: 'hover:bg-blue-700', url: 'https://www.linkedin.com/in/rayan-bin-rafin-99857a363' },
@@ -112,7 +111,7 @@ const Hero = () => {
                         transition={{ duration: 3, repeat: Infinity }}
                         className="absolute -bottom-4 right-10 bg-slate-900 border border-blue-500 px-6 py-2 rounded-full shadow-lg"
                     >
-                        <p className="text-blue-400 font-bold text-sm">2+ Years Exp.</p>
+                        <p className="text-blue-400 font-bold text-sm">MERN Specialist.</p>
                     </motion.div>
                 </motion.div>
                 <div className="absolute top-10 right-20 w-4 h-4 bg-cyan-400 rounded-full blur-sm animate-ping"></div>

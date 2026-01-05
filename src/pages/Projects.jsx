@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router';
-// এখানে ArrowUpRight যোগ করা হয়েছে
 import { ExternalLink, Github, Code2, ArrowUpRight } from 'lucide-react';
 
 const projects = [
@@ -15,7 +14,7 @@ const projects = [
     { 
         id: 2, 
         name: "Library Management System", 
-        image: "https://static.vecteezy.com/system/resources/previews/000/271/024/non_2x/vector-web-development-web-banner.jpg", 
+        image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=800&q=80", 
         tech: ["React", "Firebase", "Tailwind"],
         description: "Comprehensive library management system for books, members, and borrowing records."
     },

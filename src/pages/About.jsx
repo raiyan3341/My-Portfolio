@@ -78,7 +78,7 @@ const About = () => {
                         {/* Quick Info Grid */}
                         <div className="grid grid-cols-1 gap-4">
                             {[
-                                { icon: Briefcase, label: "Experience", value: "2+ Years (Including Internships)", color: "text-blue-400" },
+                                { icon: Briefcase, label: "Role", value: "Junior Full Stack Developer", color: "text-blue-400" },
                                 { icon: MapPin, label: "Location", value: "Dhaka, Bangladesh", color: "text-red-400" },
                                 { icon: Code2, label: "Interests", value: "Full Stack & System Design", color: "text-emerald-400" }
                             ].map((item, i) => (

@@ -1,8 +1,8 @@
-import React, { useRef, useState } from 'react'; // useRef এবং useState যোগ করা হয়েছে
-import emailjs from '@emailjs/browser'; // emailjs ইমপোর্ট করুন
+import React, { useRef, useState } from 'react';
+import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
 import { Mail, MessageCircle, Send, MapPin, Clock, Globe } from 'lucide-react';
-import Swal from 'sweetalert2'; // মেসেজ পাঠানোর পর সুন্দর অ্যালার্ট দেওয়ার জন্য (ঐচ্ছিক)
+import Swal from 'sweetalert2';
 
 const Contact = () => {
     const form = useRef();
@@ -12,7 +12,6 @@ const Contact = () => {
         e.preventDefault();
         setIsSending(true);
 
-        // আপনার EmailJS ড্যাশবোর্ড থেকে এই ৩টি আইডি পরিবর্তন করুন
         const SERVICE_ID = "service_wc3396e"; 
         const TEMPLATE_ID = "template_vwc136f";
         const PUBLIC_KEY = "g0TSIATaEi3KGGOu3";
@@ -27,7 +26,7 @@ const Contact = () => {
                     icon: 'success',
                     confirmButtonColor: '#2563eb'
                 });
-                e.target.reset(); // ফর্ম খালি করে দেওয়া
+                e.target.reset();
             }, (error) => {
                 console.log(error.text);
                 setIsSending(false);
@@ -54,7 +53,6 @@ const Contact = () => {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-                    {/* Left Side: Info (আগের মতোই থাকবে) */}
                     <div className="lg:col-span-5 space-y-4">
                         {contactData.map((item, index) => (
                             <motion.div key={index} whileHover={{ x: 10 }} className="p-6 bg-slate-900/30 backdrop-blur-2xl border border-white/5 rounded-[2rem]">
@@ -78,11 +76,9 @@ const Contact = () => {
 
                     {/* Right Side: Modern Glass Form */}
                     <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} className="lg:col-span-7 bg-white/[0.03] backdrop-blur-3xl p-8 md:p-12 rounded-[3rem] border border-white/10">
-                        {/* form এ ref এবং onSubmit যোগ করা হয়েছে */}
                         <form ref={form} onSubmit={sendEmail} className="space-y-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div className="relative">
-                                    {/* name প্রপার্টি EmailJS এর জন্য বাধ্যতামূলক */}
                                     <input type="text" name="user_name" required className="w-full bg-transparent border-b-2 border-slate-700 py-3 text-white focus:outline-none focus:border-blue-500 transition-colors peer placeholder-transparent" placeholder="Name" />
                                     <label className="absolute left-0 -top-6 text-slate-500 text-sm">Your Name</label>
                                 </div>

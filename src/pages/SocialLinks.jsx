@@ -1,6 +1,5 @@
-// components/SocialLinks/SocialLinks.jsx
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from 'react-icons/fa'; // react-icons install thakle
+import { FaGithub, FaLinkedin, FaTwitter, FaFacebook } from 'react-icons/fa'; 
 
 const SocialLinks = () => {
     const socials = [

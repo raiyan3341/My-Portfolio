@@ -7,7 +7,7 @@ import ErrorPage from '../pages/ErrorPage/ErrorPage';
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />, // Component এর বদলে element ব্যবহার করুন
+    element: <Root />,
     errorElement: <ErrorPage />,
     children: [
         {
@@ -15,7 +15,7 @@ export const router = createBrowserRouter([
             element: <Home />
         },
         {
-            path: "project/:id", // / কেটে শুধু project/:id ও রাখা যায়
+            path: "project/:id",
             element: <ProjectDetails />
         }
     ]

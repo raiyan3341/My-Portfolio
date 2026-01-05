@@ -6,7 +6,6 @@ import { Github, Globe, CheckCircle2, AlertTriangle, Lightbulb, ChevronLeft } fr
 const ProjectDetails = () => {
     const { id } = useParams();
 
-    // ১. এখানে আপনার সব প্রজেক্টের ডাটা একটি অবজেক্টে রাখুন
     const projectsData = {
         "1": {
             name: "Course Enrollment Platform",
@@ -24,7 +23,7 @@ const ProjectDetails = () => {
             techStack: ["React", "Firebase", "Tailwind CSS", "Context API"],
             description: "A comprehensive library management system that allows librarians to manage books, members, and borrowing records.",
             liveLink: "https://library-management-system-frontend-pi.vercel.app",
-            githubLink: "https://github.com/raiyan3341/TuitionBd-Frontend",
+            githubLink: "https://github.com/raiyan3341/Library-management-system-Frontend",
             challenges: " Designing an intuitive UI for complex data management and ensuring real-time updates with Firebase.",
             futurePlans: " Implementing advanced search and filtering options for books and members."
         },
@@ -40,10 +39,8 @@ const ProjectDetails = () => {
         }
     };
 
-    // ২. URL এর ID অনুযায়ী নির্দিষ্ট প্রজেক্ট খুঁজে বের করা
     const project = projectsData[id];
 
-    // যদি ভুল ID হয় তবে মেসেজ দেখানো
     if (!project) {
         return (
             <div className="text-white text-center py-20">
@@ -77,7 +74,7 @@ const ProjectDetails = () => {
                         <div className="lg:col-span-2">
                             <img src={project.image} alt={project.name} className="w-full rounded-[2.5rem] shadow-3xl border border-white/5" />
                         </div>
-                        <div className="space-y-8 bg-white/[0.02] p-8 rounded-[2rem] border border-white/5 h-fit">
+                        <div className="space-y-8 bg-white/[0.02] p-8 rounded-[2rem] border border-white/5 ">
                             <div>
                                 <h4 className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-4">Tech Stack</h4>
                                 <div className="flex flex-wrap gap-2">
