@@ -1,122 +1,148 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Twitter, Facebook, Download, Sparkles } from 'lucide-react';
 import myProfileImage from '../assets/Gemini_Generated_Image_jaueo7jaueo7jaue.png';
 
 const Hero = () => {
     const socialLinks = [
-        { Icon: Github, color: 'hover:bg-slate-700', url: 'https://github.com/raiyan3341' },
-        { Icon: Linkedin, color: 'hover:bg-blue-700', url: 'https://www.linkedin.com/in/rayan-bin-rafin-99857a363' },
-        { Icon: Twitter, color: 'hover:bg-sky-600', url: '' },
-        { Icon: Facebook, color: 'hover:bg-blue-800', url: 'https://www.facebook.com/md.rayan.526875' }
+        { Icon: Github, color: 'hover:bg-slate-700/60 hover:text-white', url: 'https://github.com/raiyan3341' },
+        { Icon: Twitter, color: 'hover:bg-sky-600/60 hover:text-white', url: '' },
+        { Icon: Facebook, color: 'hover:bg-blue-600/60 hover:text-white', url: 'https://www.facebook.com/md.rayan.526875' },
+        { Icon: Linkedin, color: 'hover:bg-blue-700/60 hover:text-white', url: 'https://www.linkedin.com/in/rayan-bin-rafin-99857a363' }
     ];
 
+    const techBadges = [
+        { name: "Node.js", color: "border-green-500/40 text-green-400 bg-green-500/5 shadow-[0_0_15px_rgba(34,197,94,0.1)]" },
+        { name: "React", color: "border-cyan-500/40 text-cyan-400 bg-cyan-500/5 shadow-[0_0_15px_rgba(6,182,212,0.1)]" },
+        { name: "MongoDB", color: "border-emerald-500/40 text-emerald-400 bg-emerald-500/5 shadow-[0_0_15px_rgba(16,185,129,0.1)]" },
+        { name: "Express", color: "border-teal-500/40 text-teal-300 bg-teal-500/5 shadow-[0_0_15px_rgba(20,184,166,0.1)]" },
+        { name: "GraphQL", color: "border-pink-500/40 text-pink-400 bg-pink-500/5 shadow-[0_0_15px_rgba(236,72,153,0.1)]" },
+        { name: "SQL", color: "border-blue-500/40 text-blue-400 bg-blue-500/5 shadow-[0_0_15px_rgba(59,130,246,0.1)]" }
+    ];
+
+    const words = ["Professional Full Stack Developer", "Problem Solver", "Innovative Creator", "Technology Enthusiast"];
+    const [index, setIndex] = useState(0);
+    const [subText, setSubText] = useState('');
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    // Typewriter core logic matching image text
+    useEffect(() => {
+        let timer;
+        const currentFullWord = words[index];
+        
+        if (!isDeleting && subText === currentFullWord) {
+            timer = setTimeout(() => setIsDeleting(true), 1500);
+        } else if (isDeleting && subText === '') {
+            setIsDeleting(false);
+            setIndex((prev) => (prev + 1) % words.length);
+        } else {
+            timer = setTimeout(() => {
+                setSubText(currentFullWord.substring(0, isDeleting ? subText.length - 1 : subText.length + 1));
+            }, isDeleting ? 40 : 85);
+        }
+        return () => clearTimeout(timer);
+    }, [subText, isDeleting, index]);
+
     return (
-        <section id="home" className="min-h-screen flex flex-col md:flex-row items-center justify-center gap-16 mt-10 relative overflow-hidden">
+        <section id="home" className="min-h-screen flex flex-col md:flex-row items-center justify-center gap-12 lg:gap-16 pt-20 pb-12 px-6 max-w-7xl mx-auto relative overflow-hidden select-none">
             
-            {/* Background Decorative Light Effect */}
-            <div className="absolute top-1/4 -left-20 w-96 h-96 bg-blue-600/10 blur-[120px] rounded-full"></div>
-            
-            <motion.div 
-                initial={{ opacity: 0, x: -60 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, ease: "easeOut" }}
-                className="flex-1 space-y-8 z-10"
-            >
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 font-mono text-sm">
-                    <Sparkles size={16} />
-                    <span>Available for Projects</span>
+            {/* Ambient Background Glow System */}
+            <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-blue-600/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+            <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-600/5 blur-[140px] rounded-full pointer-events-none -z-10" />
+
+            {/* Left Column: Data Grid Wrapper */}
+            <div className="flex-1 space-y-8 z-10 w-full text-center md:text-left flex flex-col items-center md:items-start">
+                
+                <div className="space-y-4 w-full">
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.15] tracking-tight">
+                        Hi, I am <br />
+                        <span className="text-slate-200 block mt-1 font-black">Professional Full Stack Developer</span>
+                        <span className="text-slate-400 block font-bold text-2xl sm:text-3xl md:text-4xl mt-2">Problem Solver</span>
+                        <span className="text-slate-500 block font-semibold text-xl sm:text-2xl md:text-3xl mt-1">Innovative Creator</span>
+                        <span className="text-slate-600 block font-medium text-lg sm:text-xl md:text-2xl mt-1">Technology Enthusiast</span>
+                    </h2>
                 </div>
 
-                <div className="space-y-4">
-                    <h2 className="text-slate-400 font-medium text-xl tracking-widest uppercase">Hi, I am</h2>
-                    <h1 className="text-6xl md:text-8xl font-black text-white leading-[1.1] tracking-tight">
-                        Professional <br />
-                        <span className="relative inline-block">
-                            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                                Full Stack Developer
-                            </span>
-                            <motion.span 
-                                initial={{ width: 0 }}
-                                whileInView={{ width: '100%' }}
-                                transition={{ delay: 0.8, duration: 1 }}
-                                className="absolute -bottom-2 left-0 h-1.5 bg-blue-600/30 rounded-full"
-                            />
-                        </span>
-                    </h1>
+                {/* Sub Dynamic Bracket Terminal Line from Demo */}
+                <div className="font-mono text-xs sm:text-sm tracking-widest uppercase text-slate-500 flex items-center gap-2">
+                    I AM A <span className="text-cyan-400 font-bold bg-cyan-500/5 px-2 py-0.5 rounded border border-cyan-500/10 animate-pulse">[{subText || "LOADING..."}]</span>
                 </div>
 
-                <p className="text-slate-400 text-xl max-w-xl leading-relaxed">
-                    Crafting <span className="text-white font-medium">high-performance</span> digital experiences with precision. I turn complex problems into elegant, scalable solutions.
-                </p>
+                {/* Available for Projects Badge Layout */}
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-800 text-slate-400 text-xs font-medium shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+                    <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse shadow-[0_0_10px_rgba(59,130,246,0.8)]" />
+                    Available for Projects
+                    <Sparkles size={12} className="text-cyan-400 animate-spin-slow" />
+                </div>
 
-                {/* Social Links Section - Fixed with actual URLs */}
-                <div className="flex gap-5">
-                    {socialLinks.map(({ Icon, color, url }, index) => (
-                        <motion.a
-                            key={index}
-                            href={url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 * index }}
-                            whileHover={{ y: -8, scale: 1.1 }}
-                            className={`p-4 bg-slate-800/40 backdrop-blur-md rounded-2xl text-slate-300 border border-white/5 shadow-xl transition-all ${color} hover:text-white hover:border-white/20`}
+                {/* Matrix Glowing Badges Block */}
+                <div className="flex flex-wrap justify-center md:justify-start gap-2.5 max-w-xl">
+                    {techBadges.map((badge, idx) => (
+                        <span 
+                            key={idx} 
+                            className={`px-4 py-1.5 rounded-full border text-xs font-semibold tracking-wide font-sans backdrop-blur-md cursor-default transition-all duration-300 hover:scale-105 ${badge.color}`}
                         >
-                            <Icon size={24} />
-                        </motion.a>
+                            {badge.name}
+                        </span>
                     ))}
                 </div>
 
-                <div className="flex flex-wrap gap-6 pt-4">
-                    <motion.button
-                        whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(37, 99, 235, 0.5)" }}
-                        whileTap={{ scale: 0.95 }}
-                        className="px-10 py-5 bg-blue-600 text-white rounded-2xl font-bold flex items-center gap-3 shadow-2xl transition-all group"
-                    >
-                        <Download size={22} className="group-hover:animate-bounce" /> 
-                        Get Resume
-                    </motion.button>
+                {/* Floating Social Control Icons (Image Glass Effect) */}
+                <div className="flex gap-4 pt-2">
+                    {socialLinks.map(({ Icon, color, url }, i) => (
+                        <div key={i} className="relative group">
+                            <a
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`w-12 h-12 flex items-center justify-center bg-slate-900/40 backdrop-blur-md text-slate-400 rounded-xl border border-white/5 transition-all duration-300 shadow-xl ${color} group-hover:-translate-y-1`}
+                            >
+                                <Icon size={20} />
+                            </a>
+                            {/* Reflection Mirror effect under links */}
+                            <div className="w-12 h-8 bg-gradient-to-t from-transparent via-blue-500/5 to-transparent absolute -bottom-10 opacity-0 group-hover:opacity-100 transition-opacity blur-xs pointer-events-none transform scale-y-[-1]" />
+                        </div>
+                    ))}
                 </div>
-            </motion.div>
 
-            {/* Profile Image Section */}
-            <motion.div 
-                initial={{ opacity: 0, scale: 0.8, rotate: 5 }}
-                whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 1.2 }}
-                className="relative flex-1 flex justify-center items-center"
-            >
-                <motion.div 
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                    className="absolute w-[320px] h-[320px] md:w-[480px] md:h-[480px] border-2 border-dashed border-blue-500/30 rounded-full"
-                />
-                <div className="absolute w-[300px] h-[300px] md:w-[450px] md:h-[450px] bg-gradient-to-tr from-blue-600/20 to-cyan-400/20 blur-[80px] rounded-full animate-pulse"></div>
-                <motion.div 
-                    animate={{ y: [0, -20, 0] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                    className="relative z-10 p-3 bg-white/5 backdrop-blur-3xl rounded-full border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]"
-                >
-                    <div className="overflow-hidden rounded-full w-64 h-64 md:w-100 md:h-100 border-4 border-blue-500/50 shadow-[0_0_30px_rgba(37,99,235,0.3)]">
+                {/* Bottom Main Action CTA Trigger Frame */}
+                <div className="flex flex-wrap justify-center md:justify-start gap-4 pt-4 w-full">
+                    <button className="px-6 py-3 bg-gradient-to-r from-blue-600/80 to-purple-600/80 hover:from-blue-600 hover:to-purple-600 text-white rounded-xl text-xs font-bold uppercase tracking-wider shadow-[0_0_25px_rgba(37,99,235,0.25)] hover:shadow-[0_0_35px_rgba(37,99,235,0.45)] border border-white/10 transition-all duration-300 transform active:scale-95">
+                        Let's Connect
+                    </button>
+                    <button className="px-6 py-3 bg-slate-900/60 hover:bg-slate-900 text-slate-300 rounded-xl text-xs font-bold uppercase tracking-wider border border-slate-800 shadow-xl transition-all duration-300 transform active:scale-95">
+                        Explore Projects
+                    </button>
+                </div>
+            </div>
+
+            {/* Right Column: Holographic Glass Orb Profile Matrix */}
+            <div className="flex-1 flex justify-center items-center w-full relative pt-8 md:pt-0">
+                
+                {/* Tech Constellation Structural Rings Layout */}
+                <div className="absolute w-[300px] h-[300px] sm:w-[380px] sm:h-[380px] lg:w-[480px] lg:h-[480px] border border-cyan-500/15 rounded-full animate-spin-[50s] linear infinity pointer-events-none" />
+                <div className="absolute w-[260px] h-[260px] sm:w-[330px] sm:h-[330px] lg:w-[420px] lg:h-[420px] border border-dashed border-blue-500/10 rounded-full animate-spin-[30s] linear infinity pointer-events-none" />
+
+                {/* Main Dynamic Glowing Orb Canvas */}
+                <div className="relative z-10 p-4 bg-gradient-to-b from-white/[0.08] to-transparent backdrop-blur-2xl rounded-full border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                    
+                    {/* Rainbow Spectral Gradient Halo Edge Ring from image */}
+                    <div className="absolute inset-0 rounded-full p-[2px] bg-gradient-to-tr from-cyan-400 via-blue-500/40 to-purple-500 opacity-60 animate-pulse pointer-events-none -z-10" />
+                    
+                    <div className="overflow-hidden rounded-full w-56 h-56 sm:w-68 sm:h-68 lg:w-[360px] lg:h-[360px] bg-slate-950 shadow-[inset_0_0_30px_rgba(0,0,0,0.8)] border border-slate-800">
                         <img 
                             src={myProfileImage} 
                             alt="Professional Me" 
-                            className="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                            className="w-full h-full object-cover mix-blend-lighten opacity-90 transition-transform duration-700 hover:scale-105"
                         />
                     </div>
-                    <motion.div 
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                        className="absolute -bottom-4 right-10 bg-slate-900 border border-blue-500 px-6 py-2 rounded-full shadow-lg"
-                    >
-                        <p className="text-blue-400 font-bold text-sm">MERN Specialist.</p>
-                    </motion.div>
-                </motion.div>
-                <div className="absolute top-10 right-20 w-4 h-4 bg-cyan-400 rounded-full blur-sm animate-ping"></div>
-                <div className="absolute bottom-20 left-10 w-3 h-3 bg-blue-500 rounded-full blur-sm animate-pulse"></div>
-            </motion.div>
+                </div>
+
+                {/* Spark Node Flashes */}
+                <div className="absolute top-1/4 right-12 w-2 h-2 bg-cyan-400 rounded-full blur-[1px] animate-ping" />
+                <div className="absolute bottom-1/4 left-10 w-1.5 h-1.5 bg-blue-500 rounded-full blur-[1px] animate-pulse" />
+            </div>
+
         </section>
     );
 };
